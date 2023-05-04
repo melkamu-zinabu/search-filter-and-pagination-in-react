@@ -1,21 +1,13 @@
 
-// Set up Multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/')
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname))
-  }
-});
-const upload = multer({ storage: storage });
+import fs from 'fs'
 
-
-// Define a route to handle file uploads
-app.post('/upload', upload.single('image'), async (req, res) => {
+export const imageupload= async (req, res) => {
   const newImage = new Image({
+    //metadata
     name: req.file.originalname,
     contentType: req.file.mimetype,
+   // 'data' represents the actual image data in a binary format.
+   //Later, when the image is retrieved from the database, the 'data' property can be used to render the image on a web page, by setting the image source to a data URI that contains the binary data.
     data: fs.readFileSync(req.file.path)
   });
 
@@ -27,6 +19,26 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     console.error(err);
     res.status(500).send('Error uploading file!');
   }
-});
+};
+
+
+
+
+// Define a route to retrieve an image by ID
+
+export const getimage=async (req, res) => {
+    try {
+      const image = await Image.findById(req.params.id);
+      if (!image) {
+        res.status(404).send('Image not found');
+        return;
+      }
+      res.contentType(image.contentType);
+      res.send(image.data);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving image');
+    }
+  };
 
 
