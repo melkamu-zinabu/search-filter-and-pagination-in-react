@@ -3,7 +3,7 @@ import {  getalluser,  signup } from "../controller/user-controller.js";
 
 
 const router=Express.Router();
-router.get('/',getalluser);
+router.get('/api/items',getalluser);
  router.post('/signup',signup)
  
 

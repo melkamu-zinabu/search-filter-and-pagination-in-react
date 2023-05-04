@@ -15,14 +15,14 @@ const userschema=new Schema({
       //  required:true,
         minlength:6,
     },
-    photo: {
-        data: Buffer,
-        contentType: String
-      }
-    ,
-    booking:[{
-        type:mongoose.Types.ObjectId,
-        ref:"Booking"
-    }]
+    // photo: {
+    //     data: Buffer,
+    //     contentType: String
+    //   }
+    // ,
+    // booking:[{
+    //     type:mongoose.Types.ObjectId,
+    //     ref:"Booking"
+    // }]
 })
 export default mongoose.model('User',userschema);

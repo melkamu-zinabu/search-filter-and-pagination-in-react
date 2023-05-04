@@ -2,23 +2,22 @@
 import bcrypt from "bcryptjs";
 import user from "../model/user.js";
 export const getalluser=async(req,res,next)=>{
-    let users;
-    try{console.log("hi");
-        //connect mongodb here
-        users=await user.find()
-       
+    //In the React component code, we are passing the currentPage and PAGE_SIZE values as query parameters in the axios.get request:
+    const page = parseInt(req.query.page || 1);
+    const pageSize = parseInt(req.query.pageSize || 5);
+
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    let totalItems;
+
+    try{
+    totalItems = await user.countDocuments();
+    const items = await user.find().skip(startIndex).limit(endIndex - startIndex).exec();
+    return res.status(200).json({ items, totalItems });
     }
     catch(err){
         return next();// retuns to the next availeble middleware
     }
-
-    if(!users){
-        return res.status(500).json({
-            message:'unexpected error occurred'
-        })
-    }
-
-    return res.status(200).json({users});
 
 }
 
