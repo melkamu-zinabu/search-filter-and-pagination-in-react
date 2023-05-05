@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 // ነውስ ስቶረ ሳደርግ ቲትለ፣ደስችሪፕቲኦን አለ እና ምስል ምስሉን ዳታ ፡buffer bcha mewsed
 const imageSchema = new mongoose.Schema({
     name: String,
-    contentType: String,
+    contentType: "image/png",
     data: Buffer
   });
   export default  mongoose.model('Image', imageSchema);
