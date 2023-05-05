@@ -1,23 +1,8 @@
-// import Express  from "express";
-// 
-// import path from 'path';
-// import { getimage, imageupload } from "../controller/image-controller";
-// const router=Express.Router();
+import Express  from "express";
+import { getimage, imageuploadcont } from "../controller/image-controller.js";
 
-//import multer from "multer";
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, 'uploads/')
-//     },
-//     filename: (req, file, cb) => {
-//       cb(null, Date.now() + path.extname(file.originalname))
-//     }
-//   });
-// const upload = multer({ storage: storage });
+const router=Express.Router();
+router.post('/',imageuploadcont);
+router.get('/image',getimage)
 
-
-
-// router.post('/uploads',upload.single('image'),imageupload);
-// router.get('/images/:id',getimage)
-
-// export default router;
+export default router;

@@ -7,6 +7,8 @@ import path from 'path';
 import fs from 'fs'
 import  CONNECTDB  from "./config/db.js"
 import userroute from "./routes/userroute.js"
+import Images from './model/image.js'
+import imageroute from './routes/imageroute.js'
 //import {imageroute } from './routes/imageroute.js'
 import cors from "cors"
 dotenv.config();
@@ -27,6 +29,7 @@ const port=3000;
 // it will store the ID of the referenced document in the field instead of embedding the whole document.
 //here is the middleware
 app.use('/user', userroute)
+app.use('/', imageroute)
 //app.use('/', imageroute)
 
 
@@ -71,7 +74,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post('/',upload.single('image'),async (req,res)=>{
-   const newImage = new Image({
+   const newImage = new Images({
       //metadata
       //this endpoint can access the uploaded file using req.file and process it as needed.
       name: req.file.originalname,
@@ -90,9 +93,22 @@ app.post('/',upload.single('image'),async (req,res)=>{
       res.status(500).send('Error uploading file!');
     }
         
-      
-
 })
+
+
+
+
+
+
+
+//Define a route to retrieve an image by ID
+
+// export const getimage=async (req, res) => {
+//     
+//   };
+
+
+
 
 
 
