@@ -29,29 +29,29 @@ export default Imageviewr;
 //or
 
 
-const ImageDisplay = () => {
-  const [imageData, setImageData] = useState(null);
+// const ImageDisplay = () => {
+//   const [imageData, setImageData] = useState(null);
 
-  useEffect(() => {
-    // Make the API call to retrieve the image data
-    axios.get('YOUR_BACKEND_API_ENDPOINT')
-      .then(response => {
-        setImageData(response.data);
-      })
-      .catch(error => {
-        console.log('Error fetching image data:', error);
-      });
-  }, []);
+//   useEffect(() => {
+//     // Make the API call to retrieve the image data
+//     axios.get('YOUR_BACKEND_API_ENDPOINT')
+//       .then(response => {
+//         setImageData(response.data);
+//       })
+//       .catch(error => {
+//         console.log('Error fetching image data:', error);
+//       });
+//   }, []);
 
-  return (
-    <div>
-      {imageData ? (
-        <img src={`data:${imageData.contentType};base64,${imageData.data}`} alt="Image" />
-      ) : (
-        <p>Loading image...</p>
-      )}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       {imageData ? (
+//         <img src={`data:${imageData.contentType};base64,${imageData.data}`} alt="Image" />
+//       ) : (
+//         <p>Loading image...</p>
+//       )}
+//     </div>
+//   );
+// };
 
-//export default ImageDisplay;
+// //export default ImageDisplay;
