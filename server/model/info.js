@@ -14,7 +14,6 @@ import mongoose from "mongoose";
      
     });
     
-    const SeasonalInfo = mongoose.model('SeasonalInfo', seasonalInfoSchema);
-    
-    module.exports = SeasonalInfo;
+    export default mongoose.model('SeasonalInfo', seasonalInfoSchema);
+   
  

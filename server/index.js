@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 
 import  CONNECTDB  from "./config/db.js"
 import userroute from "./routes/userroute.js"
+import inforoute from './routes/inforoute.js'
 import imageroute from './routes/imageroute.js'
 //import {imageroute } from './routes/imageroute.js'
 import cors from "cors"
@@ -27,6 +28,8 @@ const port=3000;
 //here is the middleware
 app.use('/user', userroute)
 app.use('/', imageroute)
+app.use('/info', inforoute)
+
 //app.use('/', imageroute)
 
 
