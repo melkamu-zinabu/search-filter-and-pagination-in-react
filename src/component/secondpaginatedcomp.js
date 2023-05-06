@@ -13,7 +13,7 @@ export const SecPaginatedusercomp = () => {
 
   useEffect(() => {
     axios
-    .get("http://localhost:3000/user/api/items", {
+    .get("http://localhost:3000/user/api/", {
       params: {
         page: currentPage,
         pageSize: PAGE_SIZE,
