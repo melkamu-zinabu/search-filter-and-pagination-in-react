@@ -66,7 +66,8 @@ export default mongoose.model('User',userschema);
 //       } catch (err) {
 //         return next();
 //       }
-//     } else {
+//     } 
+//     else {
 //       try {
 //         totalItems = await user.countDocuments();
 //         items = await user.find().skip(startIndex).limit(endIndex - startIndex).exec();
@@ -85,9 +86,9 @@ export default mongoose.model('User',userschema);
 // };
 
 
-////////////////////////////
-//for the above frontend code it need more improvement it has no pagination
-//////////////////////////////////
+// //////////////////////////
+// for the above frontend code it need more improvement it has no pagination
+// ////////////////////////////////
 
 
 // import React, { useState, useEffect } from 'react';

@@ -1,9 +1,10 @@
 import Express  from "express";
-import {  getalluser,  signup } from "../controller/user-controller.js";
+import {  getalluser,  getfiltereduser,  signup } from "../controller/user-controller.js";
 
 
 const router=Express.Router();
 router.get('/api/items',getalluser);
+router.get('/api/',getfiltereduser);
  router.post('/signup',signup)
  
 
