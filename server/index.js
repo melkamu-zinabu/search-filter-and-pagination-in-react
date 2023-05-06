@@ -2,12 +2,9 @@
 // kechat gpt lay first do pagination then fil
 import  express from "express";
 import dotenv from 'dotenv'
-import multer from "multer";
-import path from 'path';
-import fs from 'fs'
+
 import  CONNECTDB  from "./config/db.js"
 import userroute from "./routes/userroute.js"
-import Images from './model/image.js'
 import imageroute from './routes/imageroute.js'
 //import {imageroute } from './routes/imageroute.js'
 import cors from "cors"
@@ -63,49 +60,7 @@ app.use('/', imageroute)
 
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/')
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname))
-    }
-  });
-const upload = multer({ storage: storage });
 
-app.post('/',upload.single('image'),async (req,res)=>{
-   const newImage = new Images({
-      //metadata
-      //this endpoint can access the uploaded file using req.file and process it as needed.
-      name: req.file.originalname,
-      contentType: req.file.mimetype,
-     // 'data' represents the actual image data in a binary format.
-     //Later, when the image is retrieved from the database, the 'data' property can be used to render the image on a web page, by setting the image source to a data URI that contains the binary data.
-      data: fs.readFileSync(req.file.path)
-    });
-  
-    try {
-      await newImage.save();
-      fs.unlinkSync(req.file.path);
-      res.send('File uploaded successfully!');
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error uploading file!');
-    }
-        
-})
-
-
-
-
-
-
-
-//Define a route to retrieve an image by ID
-
-// export const getimage=async (req, res) => {
-//     
-//   };
 
 
 
